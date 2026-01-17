@@ -1,11 +1,20 @@
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import Home from "./pages/Home";
+import Jobs from "./pages/Jobs";
+import Login from "./pages/Login";
+
 function App() {
   return (
-    <h1 className="text-4xl font-bold text-blue-600 text-center mt-20">
-      Tailwind is Working 🚀
-    </h1>
+    <BrowserRouter>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/jobs" element={<Jobs />} />
+        <Route path="/login" element={<Login />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
 export default App;
-
-
