@@ -3,27 +3,31 @@ import JobCard from "./JobCard";
 import SearchBar from "./SearchBar";
 
 function JobList() {
-  // ✅ STATE MUST BE DEFINED FIRST
+  // 🔹 Filter state
   const [filters, setFilters] = useState({
     title: "",
     location: "",
     type: "",
   });
 
+  // 🔹 Job data
   const jobs = [
     {
+      id: 0,
       title: "Frontend Developer",
       company: "Google",
       location: "Bangalore",
       type: "Full Time",
     },
     {
+      id: 1,
       title: "Backend Developer",
       company: "Amazon",
       location: "Hyderabad",
       type: "Remote",
     },
     {
+      id: 2,
       title: "UI/UX Designer",
       company: "Microsoft",
       location: "Delhi",
@@ -31,7 +35,7 @@ function JobList() {
     },
   ];
 
-  // ✅ FILTER LOGIC AFTER STATE
+  // 🔹 Filter logic
   const filteredJobs = jobs.filter((job) => {
     return (
       job.title.toLowerCase().includes(filters.title.toLowerCase()) &&
@@ -47,15 +51,16 @@ function JobList() {
           Latest <span className="text-blue-500">Jobs</span>
         </h2>
 
-        {/* ✅ PASS PROPS CORRECTLY */}
+        {/* 🔍 Search & Filter */}
         <SearchBar filters={filters} setFilters={setFilters} />
 
+        {/* 💼 Job Cards */}
         {filteredJobs.length === 0 ? (
-          <p className="text-gray-400">No jobs found.</p>
+          <p className="text-gray-400 mt-6">No jobs found.</p>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredJobs.map((job, index) => (
-              <JobCard key={index} {...job} />
+            {filteredJobs.map((job) => (
+              <JobCard key={job.id} {...job} />
             ))}
           </div>
         )}
