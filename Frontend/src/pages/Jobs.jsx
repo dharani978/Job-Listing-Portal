@@ -1,8 +1,12 @@
+import Navbar from "../components/Navbar";
+import JobList from "../components/JobList";
+
 function Jobs() {
   return (
-    <h1 className="text-3xl text-center mt-20">
-      Jobs Page Works ✅
-    </h1>
+    <div className="bg-[#020617] min-h-screen">
+      <Navbar />
+      <JobList />
+    </div>
   );
 }
 

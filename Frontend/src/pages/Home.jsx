@@ -1,10 +1,14 @@
+import Navbar from "../components/Navbar";
 import Hero from "../components/Hero";
-import Features from "../components/Features";
+import JobList from "../components/JobList";
+
 function Home() {
   return (
-    <h1 className="text-3xl text-center mt-20">
-      Home Page Works ✅
-    </h1>
+    <div className="bg-[#020617] min-h-screen">
+      <Navbar />
+      <Hero />
+      <JobList />
+    </div>
   );
 }
 
