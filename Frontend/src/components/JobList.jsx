@@ -3,14 +3,14 @@ import JobCard from "./JobCard";
 import SearchBar from "./SearchBar";
 
 function JobList() {
-  // 🔹 Filter state
+  // 🔹 State for search filters
   const [filters, setFilters] = useState({
     title: "",
     location: "",
     type: "",
   });
 
-  // 🔹 Job data
+  // 🔹 Dummy job data
   const jobs = [
     {
       id: 0,
@@ -35,7 +35,7 @@ function JobList() {
     },
   ];
 
-  // 🔹 Filter logic
+  // 🔹 Filter jobs
   const filteredJobs = jobs.filter((job) => {
     return (
       job.title.toLowerCase().includes(filters.title.toLowerCase()) &&
@@ -45,20 +45,25 @@ function JobList() {
   });
 
   return (
-    <section className="bg-[#020617] py-20">
+    <section
+      id="jobs"
+      className="bg-[#020617] py-20 min-h-screen"
+    >
       <div className="max-w-7xl mx-auto px-6">
         <h2 className="text-3xl font-bold text-white mb-8">
           Latest <span className="text-blue-500">Jobs</span>
         </h2>
 
-        {/* 🔍 Search & Filter */}
+        {/* 🔍 Search bar */}
         <SearchBar filters={filters} setFilters={setFilters} />
 
-        {/* 💼 Job Cards */}
+        {/* 💼 Job cards */}
         {filteredJobs.length === 0 ? (
-          <p className="text-gray-400 mt-6">No jobs found.</p>
+          <p className="text-gray-400 mt-6">
+            No jobs found.
+          </p>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
             {filteredJobs.map((job) => (
               <JobCard key={job.id} {...job} />
             ))}

@@ -4,11 +4,11 @@ import JobList from "../components/JobList";
 
 function Home() {
   return (
-    <div className="bg-[#020617] min-h-screen">
+    <>
       <Navbar />
       <Hero />
       <JobList />
-    </div>
+    </>
   );
 }
 
