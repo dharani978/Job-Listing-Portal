@@ -3,41 +3,38 @@ import { useParams, Link } from "react-router-dom";
 function JobDetails() {
   const { id } = useParams();
 
-  // Temporary static data (later this comes from backend)
+  // Temporary dummy data (later backend will replace this)
   const jobs = [
     {
-      id: "0",
+      id: "1",
       title: "Frontend Developer",
       company: "Google",
       location: "Bangalore",
       type: "Full Time",
       description:
-        "We are looking for a skilled Frontend Developer to build modern, scalable web applications using React and Tailwind CSS.",
-      skills: ["React", "JavaScript", "Tailwind CSS", "Git"],
+        "We are looking for a skilled Frontend Developer with experience in React and Tailwind CSS.",
     },
     {
-      id: "1",
+      id: "2",
       title: "Backend Developer",
       company: "Amazon",
       location: "Hyderabad",
       type: "Remote",
       description:
-        "Seeking a Backend Developer to design scalable APIs and manage databases.",
-      skills: ["Node.js", "Express", "MongoDB", "AWS"],
+        "Backend Developer needed with strong Node.js and database knowledge.",
     },
     {
-      id: "2",
+      id: "3",
       title: "UI/UX Designer",
       company: "Microsoft",
       location: "Delhi",
       type: "Internship",
       description:
-        "Design intuitive user interfaces and experiences for enterprise products.",
-      skills: ["Figma", "UI Design", "UX Research"],
+        "Design clean and user-friendly interfaces for web applications.",
     },
   ];
 
-  const job = jobs.find((j) => j.id === id);
+  const job = jobs.find((job) => job.id === id);
 
   if (!job) {
     return (
@@ -49,7 +46,7 @@ function JobDetails() {
 
   return (
     <div className="min-h-screen bg-black text-white">
-      {/* Top Bar */}
+      {/* Header */}
       <div className="border-b border-gray-800">
         <div className="max-w-7xl mx-auto px-6 py-4">
           <Link to="/" className="text-blue-500 hover:underline">
@@ -60,39 +57,24 @@ function JobDetails() {
 
       {/* Content */}
       <div className="max-w-4xl mx-auto px-6 py-16">
-        <h1 className="text-4xl font-bold mb-2">{job.title}</h1>
-        <p className="text-gray-400 mb-6">
-          {job.company} • {job.location} • {job.type}
+        <h1 className="text-4xl font-bold mb-4">{job.title}</h1>
+        <p className="text-gray-400 mb-2">{job.company}</p>
+
+        <div className="flex gap-4 text-sm text-gray-300 mb-8">
+          <span>{job.location}</span>
+          <span>•</span>
+          <span>{job.type}</span>
+        </div>
+
+        <p className="text-gray-300 leading-relaxed mb-10">
+          {job.description}
         </p>
 
-        <div className="bg-[#020617] border border-gray-800 rounded-xl p-8">
-          <h2 className="text-2xl font-semibold mb-4">
-            Job Description
-          </h2>
-
-          <p className="text-gray-300 mb-6 leading-relaxed">
-            {job.description}
-          </p>
-
-          <h3 className="text-xl font-semibold mb-3">
-            Required Skills
-          </h3>
-
-          <div className="flex flex-wrap gap-3 mb-8">
-            {job.skills.map((skill, index) => (
-              <span
-                key={index}
-                className="bg-gray-800 px-4 py-2 rounded-full text-sm"
-              >
-                {skill}
-              </span>
-            ))}
-          </div>
-
-          <button className="bg-blue-600 hover:bg-blue-700 px-8 py-3 rounded-lg font-semibold">
+        <Link to={`/apply/${job.id}`}>
+          <button className="bg-blue-600 hover:bg-blue-700 px-8 py-3 rounded-lg font-semibold transition">
             Apply Now
           </button>
-        </div>
+        </Link>
       </div>
     </div>
   );
