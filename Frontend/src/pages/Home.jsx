@@ -5,7 +5,7 @@ import JobList from "../components/JobList";
 function Home() {
   return (
     <>
-      <Navbar />
+      <Navbar/>
       <Hero />
       <JobList />
     </>
